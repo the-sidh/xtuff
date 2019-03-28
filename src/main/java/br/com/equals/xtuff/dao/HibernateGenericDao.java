@@ -21,8 +21,8 @@ public abstract class HibernateGenericDao<K> implements GenericDao<K> {
         return em.createQuery("from " + clazz.getName(), clazz).getResultList();
     }
 
-    public void add(K toAdd) {
-        em.persist(toAdd);
+    public K add(K toAdd) {
+       return em.merge(toAdd);
     }
 
     public K getById(Integer id) {
@@ -39,6 +39,12 @@ public abstract class HibernateGenericDao<K> implements GenericDao<K> {
 
     public void update(K updated) {
         em.merge(updated);
+    }
+
+    public void deleteAll() {
+        for(K item : getAll()){
+            em.remove(item);
+        }
     }
 
     public void commit() throws Exception {

@@ -19,22 +19,32 @@ public class Produto {
     private Double preco;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_insercao", nullable = false)
+    @Column(name = "data_insercao")
     private Calendar dataInsercao;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_validade", nullable = false)
+    @Column(name = "data_validade")
     private Calendar dataValidade;
 
     @Column(name = "qtd", nullable = false)
     private Integer quantidade;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_loja")
     private Loja loja;
 
     public Produto() {
         super();
+    }
+
+    public Produto(Integer id, String nome, Double preco, Calendar dataInsercao, Calendar dataValidade, Integer quantidade, Loja loja) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.dataInsercao = dataInsercao;
+        this.dataValidade = dataValidade;
+        this.quantidade = quantidade;
+        this.loja = loja;
     }
 
     public Produto(Integer id, String nome, Double preco, Calendar dataInsercao, Calendar dataValidade, Integer quantidade) {

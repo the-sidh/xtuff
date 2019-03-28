@@ -1,6 +1,7 @@
 package br.com.equals.xtuff.domain.entities;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,17 +23,28 @@ public class Loja {
 
     @Column(name = "senha", nullable = false)
     private String senha;
-//
-//    @OneToMany( cascade=CascadeType.ALL)
-//    @JoinColumn(name="id_produto")
-//    private Collection<Produto> produtos = new ArrayList<Produto>();
+
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user = new User();
+
+    @OneToMany(mappedBy = "loja")
+    private Collection<Produto> produtos = new ArrayList<Produto>();
 
     public Loja(Integer id, String nome, String email, String senha, List<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        //this.produtos = produtos;
+        this.produtos = produtos;
+    }
+
+    public Loja(Integer id, String nome, String email, String senha, User user) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.user = user;
     }
 
     public Loja(Integer id, String nome, String email, String senha) {
@@ -48,10 +60,6 @@ public class Loja {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -78,11 +86,19 @@ public class Loja {
         this.senha = senha;
     }
 
-//    public Collection<Produto> getProdutos() {
-//        return produtos;
-//    }
-//
-//    public void setProdutos(Collection<Produto> produtos) {
-//        this.produtos = produtos;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Collection<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Collection<Produto> produtos) {
+        this.produtos = produtos;
+    }
 }
