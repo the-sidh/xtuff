@@ -1,6 +1,7 @@
 package br.com.equals.xtuff.dao;
 
 import br.com.equals.xtuff.dao.LojaDao;
+import br.com.equals.xtuff.domain.entities.Endereco;
 import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.entities.User;
 
@@ -23,6 +24,8 @@ public class LojaDaoTest {
     private static LojaDao dao = null;
     private static int idUser;
     private static UserDao userDao = null;
+    private static EnderecoDao endDao = null;
+    private static int idEnd;
 
     @BeforeAll
     public static void setup() {
@@ -31,6 +34,21 @@ public class LojaDaoTest {
         User user = new User("Sid","Rezende","sid@equals.com.br","123");
         userDao = new UserDao(em);
         idUser= userDao.add(user).getId();
+        try {
+            userDao.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Endereco endereco = new Endereco("Avenida Dom Pedro I, 500" , "Ipiranga","300","cj30","Sao Paulo", "SP", "01549-000");
+        endDao = new EnderecoDao(em);
+        idEnd  = endDao.add(endereco).getId();
+        try {
+            endDao.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -49,14 +67,13 @@ public class LojaDaoTest {
 
         try {
             User user = userDao.getById(idUser);
-            Loja loja = new Loja(null, "Teste", "sid@teste.com", "123", user) ;
+            Endereco endereco = endDao.getById(idEnd);
+            Loja loja = new Loja(null, "Teste", user) ;
+            loja.setEndereco(endereco);
             int addedId = dao.add(loja).getId();
             dao.commit();
-            loja.setUser(user);
-            userDao.commit();
-            dao.commit();
             Loja loja1 = dao.getById(addedId);
-            Assertions.assertTrue(loja.getEmail().equals(loja1.getEmail()) && loja.getNome().equals(loja1.getNome()));
+            Assertions.assertTrue(loja.getNome().equals("Teste"));
 
         } catch (Exception e) {
 
@@ -65,9 +82,13 @@ public class LojaDaoTest {
 
     @Test
     public void multiplas_lojas_deve_ser_adicionadas() {
+        User user = userDao.getById(idUser);
+        Endereco endereco = endDao.getById(idEnd);
         try {
             for (int i = 0; i < 100; i++) {
-                Loja loja = new Loja(null, "Teste", "sid@teste.com", "123");
+                Loja loja = new Loja(null, "Teste");
+                loja.setUser(user);
+                loja.setEndereco(endereco);
                 int addedId = dao.add(loja).getId();
                 dao.commit();
             }
@@ -81,9 +102,13 @@ public class LojaDaoTest {
 
     @Test
     public void dado_um_id_uma_loja_deve_ser_removida() {
+        User user = userDao.getById(idUser);
+        Endereco endereco = endDao.getById(idEnd);
         EntityManager em = null;
         try {
-            Loja loja = new Loja(null, "Teste", "sid@teste.com", "123");
+            Loja loja = new Loja(null, "Teste");
+            loja.setUser(user);
+            loja.setEndereco(endereco);
             int addedId = dao.add(loja).getId();
             dao.commit();
             dao.deleteById(addedId);

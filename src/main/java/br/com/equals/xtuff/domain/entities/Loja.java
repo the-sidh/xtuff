@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "loja")
+@Table(name = "t_store")
 public class Loja {
 
     @Id
@@ -18,40 +18,35 @@ public class Loja {
     @Column(name = "nome_loja", nullable = false)
     private String nome;
 
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "senha", nullable = false)
-    private String senha;
-
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user = new User();
 
+
+    @OneToOne
+    @JoinColumn(name = "id_end")
+    private Endereco endereco = new Endereco();
+
     @OneToMany(mappedBy = "loja")
     private Collection<Produto> produtos = new ArrayList<Produto>();
 
-    public Loja(Integer id, String nome, String email, String senha, List<Produto> produtos) {
+    public Loja(Integer id, String nome, List<Produto> produtos) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+
         this.produtos = produtos;
     }
 
-    public Loja(Integer id, String nome, String email, String senha, User user) {
+    public Loja(Integer id, String nome, User user) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
-        this.senha = senha;
         this.user = user;
     }
 
-    public Loja(Integer id, String nome, String email, String senha) {
+    public Loja(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+
     }
 
     public Loja() {
@@ -70,22 +65,6 @@ public class Loja {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public User getUser() {
         return user;
     }
@@ -100,5 +79,13 @@ public class Loja {
 
     public void setProdutos(Collection<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
