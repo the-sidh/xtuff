@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
 import br.com.equals.xtuff.domain.entities.Endereco;
 import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.entities.Produto;
-import br.com.equals.xtuff.domain.entities.User;
+import br.com.equals.xtuff.domain.entities.Comerciante;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class ProdutoDaoTest {
@@ -28,13 +28,13 @@ public class ProdutoDaoTest {
 
     @BeforeAll
     public static void setup() {
-        em = Persistence.createEntityManagerFactory("xtuff").createEntityManager();
+        em = Persistence.createEntityManagerFactory("xtufftest").createEntityManager();
 
-        User user = new User("Sid","Rezende","sid@equals.com.br","123");
-        UserDao userDao = new UserDao(em);
-        User userPersistido  = userDao.add(user);
+        Comerciante user = new Comerciante("Sid","Rezende","sid@equals.com.br","123");
+        ComercianteDao comercianteDao = new ComercianteDao(em);
+        Comerciante userPersistido  = comercianteDao.add(user);
         try {
-            userDao.commit();
+            comercianteDao.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class ProdutoDaoTest {
         }
 
         dao = new ProdutoDao(em);
-        Loja loja = new Loja(null, "Teste", userPersistido);
+        Loja loja = new Loja("Teste");
         loja.setEndereco(enderecoPersistido);
         lojaDao = new LojaDao(em);
         idLoja = lojaDao.add(loja).getId();

@@ -19,11 +19,6 @@ public class Loja {
     private String nome;
 
     @OneToOne
-    @JoinColumn(name = "id_user")
-    private User user = new User();
-
-
-    @OneToOne
     @JoinColumn(name = "id_end")
     private Endereco endereco = new Endereco();
 
@@ -37,16 +32,8 @@ public class Loja {
         this.produtos = produtos;
     }
 
-    public Loja(Integer id, String nome, User user) {
-        this.id = id;
+    public Loja(String nome) {
         this.nome = nome;
-        this.user = user;
-    }
-
-    public Loja(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
-
     }
 
     public Loja() {
@@ -63,14 +50,6 @@ public class Loja {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Collection<Produto> getProdutos() {

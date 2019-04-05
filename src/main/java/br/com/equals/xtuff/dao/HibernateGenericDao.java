@@ -1,6 +1,8 @@
 package br.com.equals.xtuff.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -16,6 +18,14 @@ public abstract class HibernateGenericDao<K> implements GenericDao<K> {
         clazz = (Class<K>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }
+
+    @SuppressWarnings("all")
+    public HibernateGenericDao() {
+        this.em =   em = Persistence.createEntityManagerFactory("xtuff").createEntityManager();;
+        clazz = (Class<K>) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
 
     public List<K> getAll() {
         return em.createQuery("from " + clazz.getName(), clazz).getResultList();
