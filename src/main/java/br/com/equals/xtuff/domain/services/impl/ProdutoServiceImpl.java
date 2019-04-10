@@ -2,12 +2,19 @@ package br.com.equals.xtuff.domain.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import br.com.equals.xtuff.dao.LojaDao;
 import br.com.equals.xtuff.dao.ProdutoDao;
+import br.com.equals.xtuff.domain.entities.Comerciante;
+import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.entities.Produto;
+import br.com.equals.xtuff.domain.services.ComercianteService;
+import br.com.equals.xtuff.domain.services.LojaService;
 import br.com.equals.xtuff.domain.services.ProdutoService;
 
 @Service
@@ -17,7 +24,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     private ProdutoDao produtoDao;
 
     @Autowired
-    private LojaDao lojaDao;
+    private LojaService lojaService;
+
+    @Autowired
+    private ComercianteService comercianteService;
+
 
     @Override
     public List<Produto> listProducts() {
@@ -32,21 +43,43 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public boolean deleteProduct(int id) {
         boolean retorno = true;
-        try{
+        try {
             produtoDao.deleteById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             retorno = false;
         }
         return retorno;
     }
 
     @Override
-    public void updateProduct(Produto product) {
-        produtoDao.update(product);
+    public void updateProduct(Produto product, Comerciante comerciante) {
+        product.setLoja(comerciante.getLoja());
+        try {
+            produtoDao.update(product);
+            produtoDao.commit();
+            comercianteService.updateComerciante(comerciante);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Produto persistProduct(Produto product) {
+        Produto persistedProduto = null;
+        try {
+            persistedProduto = produtoDao.add(product);
+            produtoDao.commit();
+        } catch (Exception e) {
+
+        }
+        return persistedProduto;
     }
 
     @Override
-    public Produto addProduct(Produto product) {
-        return produtoDao.add(product);
+    public void AddProductToStore(@ModelAttribute Produto produto, Comerciante comerciante) {
+        Loja loja = comerciante.getLoja();
+        produto.setLoja(loja);
+        Produto persistedProduto = persistProduct(produto);
+        loja.getProdutos().add(persistedProduto);
+        comercianteService.updateComerciante(comerciante);
     }
 }

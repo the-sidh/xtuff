@@ -20,15 +20,17 @@ public class ComercianteDao extends HibernateGenericDao<Comerciante> {
     public Comerciante findByUsername(String email) {
         Comerciante comerciante = null;
         try {
-            comerciante = (Comerciante) this.em
+            Integer id = (Integer) this.em
                     .createQuery(
-                            "select c from Comerciante c where "
+                            "select c.id from Comerciante c where "
                                     + "c.email = :email")
                     .setParameter("email", email)
                     .getSingleResult();
+            comerciante = this.getById(id);
         } catch (Exception e) {
 
         }
+
         return comerciante;
     }
 }

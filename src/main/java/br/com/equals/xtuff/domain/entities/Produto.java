@@ -1,7 +1,10 @@
 package br.com.equals.xtuff.domain.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_product")
@@ -18,10 +21,12 @@ public class Produto {
     @Column(name = "preco", nullable = false)
     private Double preco;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name = "data_insercao")
     private Calendar dataInsercao;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name = "data_validade")
     private Calendar dataValidade;
@@ -29,7 +34,7 @@ public class Produto {
     @Column(name = "qtd", nullable = false)
     private Integer quantidade;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_loja")
     private Loja loja;
 
@@ -110,5 +115,13 @@ public class Produto {
 
     public void setLoja(Loja loja) {
         this.loja = loja;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return id.equals(produto.id);
     }
 }

@@ -4,7 +4,9 @@ import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_store")
@@ -22,13 +24,21 @@ public class Loja {
     @JoinColumn(name = "id_end")
     private Endereco endereco = new Endereco();
 
-    @OneToMany(mappedBy = "loja")
-    private Collection<Produto> produtos = new ArrayList<Produto>();
+    @OneToMany(mappedBy = "loja",cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Collection<Produto> produtos = new HashSet<>();
 
-    public Loja(Integer id, String nome, List<Produto> produtos) {
+    public Loja(Integer id, String nome, Set<Produto> produtos) {
         this.id = id;
         this.nome = nome;
 
+        this.produtos = produtos;
+    }
+
+    public Loja(Integer id, String nome, Endereco endereco, Collection<Produto> produtos) {
+        this.id = id;
+        this.nome = nome;
+        this.endereco = endereco;
         this.produtos = produtos;
     }
 

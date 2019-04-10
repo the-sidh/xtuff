@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 
 import br.com.equals.xtuff.domain.entities.Comerciante;
+import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.services.DashboardService;
 
 @Controller
@@ -24,6 +25,9 @@ public class DashboardController {
         if(!service.ComercianteHasLoja(comerciante)){
             return "cadastra-loja";
         }
+
+        model.addAttribute("comerciante",comerciante);
+
         return "welcome";
     }
 }

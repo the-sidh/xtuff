@@ -28,6 +28,20 @@ public class LojaServiceImpl implements LojaService {
 
     @Override
     public void updateLoja(Loja loja) {
+        lojaDao.update(loja);
+        try {
+            lojaDao.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void commit() {
+        try {
+            lojaDao.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -36,7 +36,8 @@ public abstract class HibernateGenericDao<K> implements GenericDao<K> {
     }
 
     public K getById(Integer id) {
-        return em.find(clazz, id);
+        K k = em.find(clazz, id);
+        return k;
     }
 
     public void deleteById(Integer id) throws Exception {

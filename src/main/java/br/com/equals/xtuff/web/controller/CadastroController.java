@@ -41,6 +41,5 @@ public class CadastroController {
         Comerciante comerciante = comercianteService.findByUsername(principal.getName());
         cadastroService.createLoja(comerciante, loja, endereco);
         return "welcome";
-
     }
 }
