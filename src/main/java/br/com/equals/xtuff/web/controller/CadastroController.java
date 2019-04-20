@@ -12,7 +12,6 @@ import br.com.equals.xtuff.domain.entities.Endereco;
 import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.services.CadastroService;
 import br.com.equals.xtuff.domain.services.ComercianteService;
-import br.com.equals.xtuff.domain.services.LojaService;
 
 @Controller
 public class CadastroController {
@@ -38,7 +37,7 @@ public class CadastroController {
     ) {
         Endereco endereco = new Endereco(logradouro, bairro, numero, complemento, cidade, estado, cep);
         Loja loja = new Loja(nome);
-        Comerciante comerciante = comercianteService.findByUsername(principal.getName());
+        Comerciante comerciante = comercianteService.findByEmail(principal.getName());
         cadastroService.createLoja(comerciante, loja, endereco);
         return "welcome";
     }

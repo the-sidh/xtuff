@@ -20,6 +20,6 @@ public class DashboardServiceImpl implements DashboardService {
 
     @Override
     public Comerciante getComerciante(String email) {
-        return comercianteService.findByUsername(email);
+        return comercianteService.findByEmail(email);
     }
 }

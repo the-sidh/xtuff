@@ -3,12 +3,14 @@ package br.com.equals.xtuff.domain.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
 
 @Entity
 @Table(name = "t_product")
-public class Produto {
+public class Produto  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

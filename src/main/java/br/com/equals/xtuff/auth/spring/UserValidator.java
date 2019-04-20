@@ -31,7 +31,7 @@ public class UserValidator implements Validator {
         if (!user.getEmail().contains("@")) {
             errors.rejectValue("email", "Format.userForm.username");
         }
-        if (service.findByUsername(user.getEmail()) != null) {
+        if (service.findByEmail(user.getEmail()) != null) {
             errors.rejectValue("email", "Duplicate.userForm.username");
         }
 

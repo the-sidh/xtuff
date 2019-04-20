@@ -7,11 +7,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages={"br.com.equals.xtuff"})
 @EntityScan(basePackages="br.com.equals.xtuff.domain.entities")
+@EnableJpaRepositories(basePackages = "br.com.equals.xtuff.repositories")
 public class AppMain extends SpringBootServletInitializer {
 
     @Override

@@ -1,5 +1,7 @@
 package br.com.equals.xtuff.domain.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "t_comerciante")
-public class Comerciante {
+public class Comerciante  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_comerciante")

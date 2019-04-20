@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 
-import javax.validation.Valid;
-
 import br.com.equals.xtuff.domain.entities.Comerciante;
-import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.entities.Produto;
+import br.com.equals.xtuff.domain.exceptions.EntityNotFoundException;
 import br.com.equals.xtuff.domain.services.ComercianteService;
 import br.com.equals.xtuff.domain.services.LojaService;
 import br.com.equals.xtuff.domain.services.ProdutoService;
@@ -46,7 +44,7 @@ public class ProdutoController {
     @PostMapping("/add-produto")
     public String addProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
         principal.getName();
-        Comerciante comerciante = comercianteService.findByUsername(principal.getName());
+        Comerciante comerciante = comercianteService.findByEmail(principal.getName());
         produtoService.AddProductToStore(produto, comerciante);
         model.addAttribute("comerciante", comerciante);
         return "welcome";
@@ -55,7 +53,7 @@ public class ProdutoController {
     @PostMapping("/edit-produto")
     public String editProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
         principal.getName();
-        Comerciante comerciante = comercianteService.findByUsername(principal.getName());
+        Comerciante comerciante = comercianteService.findByEmail(principal.getName());
         produtoService.updateProduct(produto,comerciante);
         model.addAttribute("comerciante", comerciante);
         return "welcome";
@@ -63,14 +61,19 @@ public class ProdutoController {
 
     @GetMapping("/edit-produto/{id}")
     public String editProduct(@PathVariable("id") Integer id, Model model ) {
-        Produto produto = produtoService.showProduct(id);
-        model.addAttribute("produto", produto);
+        try {
+            Produto produto = produtoService.showProduct(id);
+            model.addAttribute("produto", produto);
+        }catch (EntityNotFoundException e){
+
+        }
+
         return "edit-produto";
     }
 
     @GetMapping("/produto-delete/{id}")
     public String delete(@PathVariable("id") Integer id, Principal principal, Model model) {
-        Comerciante comerciante = comercianteService.findByUsername(principal.getName());
+        Comerciante comerciante = comercianteService.findByEmail(principal.getName());
         produtoService.deleteProduct(id);
         model.addAttribute("comerciante", comerciante);
         return "welcome";

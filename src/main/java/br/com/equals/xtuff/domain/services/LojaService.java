@@ -7,5 +7,4 @@ public interface LojaService {
 
     public Loja addLoja(Loja loja);
     public void updateLoja(Loja loja);
-    public void commit();
 }

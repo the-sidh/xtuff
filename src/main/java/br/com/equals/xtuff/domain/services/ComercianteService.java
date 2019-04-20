@@ -6,7 +6,7 @@ import br.com.equals.xtuff.domain.exceptions.UnauthorizedException;
 
 public interface ComercianteService {
     void save(Comerciante comerciante);
-    Comerciante findByUsername(String username);
+    Comerciante findByEmail(String username);
     public void updateComerciante(Comerciante comerciante);
     public void addLoja(Comerciante comerciante , Loja loja);
     public Loja getLoja(Comerciante comerciante);
