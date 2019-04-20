@@ -1,4 +1,4 @@
-package br.com.equals.xtuff.web.controller;
+package br.com.equals.xtuff.web.controllers.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
