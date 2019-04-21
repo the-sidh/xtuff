@@ -31,6 +31,8 @@ public class ComercianteServiceImplTest {
     @Mock
     private ComercianteRepository comercianteRepository;
 
+
+
     @Test
     @DisplayName("Dado um email, deve retornar o comerciante associado")
     public void dadoEmailRetornaComerciante() {

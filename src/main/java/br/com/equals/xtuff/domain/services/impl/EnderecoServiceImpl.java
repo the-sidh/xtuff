@@ -11,16 +11,16 @@ import br.com.equals.xtuff.repositories.EnderecoRepository;
 public class EnderecoServiceImpl implements EnderecoService {
 
     @Autowired
-    private EnderecoRepository enderecoDao;
+    private EnderecoRepository enderecoRepository;
 
     @Override
     public Endereco addEndereco(Endereco endereco) {
-        Endereco persistedEndereco = enderecoDao.save(endereco);
+        Endereco persistedEndereco = enderecoRepository.save(endereco);
         return persistedEndereco;
     }
 
     @Override
     public void updateEndereco(Endereco endereco) {
-        enderecoDao.save(endereco);
+        enderecoRepository.save(endereco);
     }
 }

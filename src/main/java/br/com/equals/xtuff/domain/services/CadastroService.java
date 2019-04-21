@@ -9,5 +9,5 @@ import br.com.equals.xtuff.domain.entities.Loja;
 
 @Service
 public interface CadastroService {
-    public void createLoja(Comerciante comerciante, Loja loja, Endereco endereco);
+    public Loja createLoja(Comerciante comerciante, Loja loja, Endereco endereco);
 }

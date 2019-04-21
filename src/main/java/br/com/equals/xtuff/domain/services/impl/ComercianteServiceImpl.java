@@ -13,30 +13,30 @@ import br.com.equals.xtuff.repositories.ComercianteRepository;
 public class ComercianteServiceImpl implements ComercianteService {
 
     @Autowired
-    private ComercianteRepository dao;
+    private ComercianteRepository comercianteRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void save(Comerciante comerciante) {
         comerciante.setSenha(bCryptPasswordEncoder.encode(comerciante.getSenha()));
-        dao.save(comerciante);
+        comercianteRepository.save(comerciante);
     }
 
     @Override
     public Comerciante findByEmail(String email) {
-        return dao.findByEmail(email).get(0);
+        return comercianteRepository.findByEmail(email).get(0);
     }
 
     @Override
     public void updateComerciante(Comerciante comerciante) {
-        dao.save(comerciante);
+        comercianteRepository.save(comerciante);
     }
 
     @Override
     public Loja addLoja(Comerciante comerciante, Loja loja) {
         comerciante.setLoja(loja);
-        return dao.save(comerciante).getLoja();
+        return comercianteRepository.save(comerciante).getLoja();
     }
 
     @Override

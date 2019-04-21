@@ -22,9 +22,9 @@ public class CadastroServiceImpl implements CadastroService {
     ComercianteService comercianteService;
 
     @Override
-    public void createLoja(Comerciante comerciante, Loja loja, Endereco endereco){
+    public Loja createLoja(Comerciante comerciante, Loja loja, Endereco endereco){
         Endereco persistedEndereco = enderecoService.addEndereco(endereco);
         loja.setEndereco(persistedEndereco);
-        comercianteService.addLoja(comerciante, loja);
+        return comercianteService.addLoja(comerciante, loja);
     }
 }

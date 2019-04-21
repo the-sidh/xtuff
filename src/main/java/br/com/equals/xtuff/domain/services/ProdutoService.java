@@ -15,4 +15,5 @@ public interface ProdutoService {
     public boolean deleteProduct(int id);
     public void updateProduct(Produto product, String email);
 
+    Produto persistProduct(Produto product);
 }

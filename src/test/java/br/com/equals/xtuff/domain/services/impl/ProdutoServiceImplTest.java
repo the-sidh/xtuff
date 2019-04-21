@@ -35,7 +35,7 @@ public class ProdutoServiceImplTest {
     @DisplayName("Deve retornar um produto")
     public void deveRetornarProduto() {
 
-        Produto produto = new Produto(1,"Parafuso", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null) ;
+        Produto produto = new Produto(1,"Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null) ;
         Optional<Produto> opt = Optional.of(produto);
 
         Mockito.when(produtoRepository.findById(1))
@@ -47,7 +47,8 @@ public class ProdutoServiceImplTest {
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
         }
-        Assertions.assertEquals(p.getNome(),"Parafuso");
+        Assertions.assertEquals(p.getNome(),"Ligth Saber");
 
     }
+
 }
