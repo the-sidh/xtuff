@@ -17,19 +17,14 @@ public class CadastroServiceImpl implements CadastroService {
     @Autowired
     EnderecoService enderecoService;
 
-    @Autowired
-    LojaService lojaService;
 
     @Autowired
     ComercianteService comercianteService;
 
     @Override
     public void createLoja(Comerciante comerciante, Loja loja, Endereco endereco){
-
         Endereco persistedEndereco = enderecoService.addEndereco(endereco);
         loja.setEndereco(persistedEndereco);
-        Loja persistedLoja = lojaService.addLoja(loja);
-        comerciante.setLoja(persistedLoja);
-        comercianteService.updateComerciante(comerciante);
+        comercianteService.addLoja(comerciante, loja);
     }
 }

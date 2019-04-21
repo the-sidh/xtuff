@@ -1,4 +1,4 @@
-package br.com.equals.xtuff.web.controllers.web;
+package br.com.equals.xtuff.web.controllers.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 import br.com.equals.xtuff.domain.entities.Comerciante;
 import br.com.equals.xtuff.domain.entities.Produto;
@@ -20,8 +21,8 @@ import br.com.equals.xtuff.domain.services.LojaService;
 import br.com.equals.xtuff.domain.services.ProdutoService;
 
 @Controller
-@RequestMapping("/web")
-public class ProdutoController {
+@RequestMapping("/api/")
+public class ProdutoRestController {
 
     @Autowired
     ComercianteService comercianteService;
@@ -32,14 +33,8 @@ public class ProdutoController {
     @Autowired
     LojaService lojaService;
 
-    @GetMapping("/add-produto")
-    public String registration(Model model) {
-        model.addAttribute("produto", new Produto());
-        return "add-produto";
-    }
-
     @PostMapping("/add-produto")
-    public String addProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
+    public String addProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model) {
         String email = principal.getName();
         Comerciante comerciante = comercianteService.findByEmail(principal.getName());
         lojaService.addProduto(comerciante.getLoja(), produto);
@@ -48,25 +43,13 @@ public class ProdutoController {
     }
 
     @PostMapping("/edit-produto")
-    public String editProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
+    public String editProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model) {
         String email = principal.getName();
         Comerciante comerciante = comercianteService.findByEmail(principal.getName());
-        produtoService.updateProduct(produto,email);
-        model.addAttribute("comerciante", comerciante);
-        return "welcome";
+        produtoService.updateProduct(produto, email);
+        return "";
     }
 
-    @GetMapping("/edit-produto/{id}")
-    public String editProduct(@PathVariable("id") Integer id, Model model ) {
-        try {
-            Produto produto = produtoService.showProduct(id);
-            model.addAttribute("produto", produto);
-        }catch (EntityNotFoundException e){
-
-        }
-
-        return "edit-produto";
-    }
 
     @GetMapping("/produto-delete/{id}")
     public String delete(@PathVariable("id") Integer id, Principal principal, Model model) {

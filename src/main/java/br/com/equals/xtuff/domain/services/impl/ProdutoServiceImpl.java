@@ -28,12 +28,6 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private ComercianteService comercianteService;
 
-
-    @Override
-    public List<Produto> listProducts() {
-        return produtoRepository.findAll();
-    }
-
     @Override
     public Produto showProduct(int id) throws EntityNotFoundException {
         Optional<Produto> produto = produtoRepository.findById(id);
@@ -55,7 +49,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public void updateProduct(Produto product, Comerciante comerciante) {
+    public void updateProduct(Produto product, String email) {
+        Comerciante comerciante = comercianteService.findByEmail(email);
         product.setLoja(comerciante.getLoja());
         try {
             produtoRepository.save(product);
@@ -74,12 +69,12 @@ public class ProdutoServiceImpl implements ProdutoService {
         return persistedProduto;
     }
 
-    @Override
-    public void AddProductToStore(@ModelAttribute Produto produto, Comerciante comerciante) {
-        Loja loja = comerciante.getLoja();
-        produto.setLoja(loja);
-        Produto persistedProduto = persistProduct(produto);
-        loja.getProdutos().add(persistedProduto);
-        comercianteService.updateComerciante(comerciante);
-    }
+//    @Override
+//    public void AddProductToStore(@ModelAttribute Produto produto, Comerciante comerciante) {
+//        Loja loja = comerciante.getLoja();
+//        produto.setLoja(loja);
+//        Produto persistedProduto = persistProduct(produto);
+//        loja.getProdutos().add(persistedProduto);
+//        comercianteService.updateComerciante(comerciante);
+//    }
 }

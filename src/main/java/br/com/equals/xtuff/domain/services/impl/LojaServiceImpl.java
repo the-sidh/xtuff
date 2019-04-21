@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.equals.xtuff.domain.entities.Loja;
+import br.com.equals.xtuff.domain.entities.Produto;
 import br.com.equals.xtuff.domain.services.LojaService;
 import br.com.equals.xtuff.repositories.LojaRepository;
 
@@ -15,15 +16,13 @@ public class LojaServiceImpl implements LojaService {
 
 
     @Override
-    public Loja addLoja(Loja loja) {
-        Loja persistedLoja = lojaDao.save(loja);
-
-        return persistedLoja;
+    public void updateLoja(Loja loja) {
+        lojaDao.save(loja);
     }
 
     @Override
-    public void updateLoja(Loja loja) {
-        lojaDao.save(loja);
+    public void addProduto(Loja loja, Produto produto) {
+
     }
 
 

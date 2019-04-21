@@ -34,8 +34,9 @@ public class ComercianteServiceImpl implements ComercianteService {
     }
 
     @Override
-    public void addLoja(Comerciante comerciante, Loja loja) {
-
+    public Loja addLoja(Comerciante comerciante, Loja loja) {
+        comerciante.setLoja(loja);
+        return dao.save(comerciante).getLoja();
     }
 
     @Override

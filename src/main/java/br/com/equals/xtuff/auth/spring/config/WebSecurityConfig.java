@@ -27,13 +27,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                //.antMatcher("/web/**")
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/registration", "*").permitAll()
+                .antMatchers("/resources/**", "/web/registration", "/web/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/web/login")
                 .loginProcessingUrl("/j_spring_security_check")
+                .successForwardUrl("/web/welcome")
                 .usernameParameter("email")
                 .passwordParameter("senha")
                 .permitAll()

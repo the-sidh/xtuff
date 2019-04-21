@@ -11,6 +11,7 @@ import br.com.equals.xtuff.domain.entities.Comerciante;
 import br.com.equals.xtuff.domain.services.ComercianteService;
 
 @RestController
+@RequestMapping("/api/")
 public class ComercianteRestController {
 
     @Autowired

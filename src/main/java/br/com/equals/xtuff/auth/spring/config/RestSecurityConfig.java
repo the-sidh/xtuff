@@ -40,8 +40,9 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().and().csrf().disable()
+                .antMatcher("/api/**") //customized entry point
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,  "api/login")
+                .antMatchers(HttpMethod.POST,  "api/login","api/register")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

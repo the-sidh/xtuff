@@ -16,7 +16,7 @@ import br.com.equals.xtuff.domain.services.ComercianteService;
 import br.com.equals.xtuff.domain.services.spring.SecurityService;
 
 @Controller
-@RequestMapping("/old")
+@RequestMapping("/web")
 public class ComercianteController {
     @Autowired
     private ComercianteService comercianteService;
