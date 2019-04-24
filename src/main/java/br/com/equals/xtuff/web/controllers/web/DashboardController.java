@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 import br.com.equals.xtuff.domain.entities.Comerciante;
-import br.com.equals.xtuff.domain.services.DashboardService;
+import br.com.equals.xtuff.domain.services.ComercianteService;
 
 @Controller
 @RequestMapping("/web")
 public class DashboardController {
 
     @Autowired
-    private DashboardService service;
+    private ComercianteService service;
 
     @GetMapping({"/", "/welcome"})
     public String welcome(Model model, Principal principal) {
         String email = principal.getName();
-        Comerciante comerciante = service.getComerciante(email);
+        Comerciante comerciante = service.findByEmail(email);
 
-        if(!service.ComercianteHasLoja(comerciante)){
+        if(comerciante.getLoja()==null){
             return "cadastra-loja";
         }
 

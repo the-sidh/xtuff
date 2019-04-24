@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,15 +21,21 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import br.com.equals.xtuff.domain.entities.Comerciante;
+import br.com.equals.xtuff.domain.services.ComercianteService;
+
 import static br.com.equals.xtuff.auth.spring.config.TokenConfig.HEADER_STRING;
 import static br.com.equals.xtuff.auth.spring.config.TokenConfig.SECRET;
 import static br.com.equals.xtuff.auth.spring.config.TokenConfig.TOKEN_PREFIX;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    public JWTAuthorizationFilter(AuthenticationManager authManager) {
+    public JWTAuthorizationFilter(AuthenticationManager authManager, ApplicationContext ctx) {
         super(authManager);
+        this.comercianteService= ctx.getBean(ComercianteService.class);
     }
+
+    private ComercianteService comercianteService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
@@ -51,12 +59,12 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
             // parse the token.
 
-            Algorithm algorithm = Algorithm.HMAC256(SECRET);
+            Algorithm algorithm = Algorithm.HMAC512(SECRET);
             JWTVerifier verifier = JWT.require(algorithm).build(); // Reusable verifier instance
             DecodedJWT jwt = verifier.verify(token.replace(TOKEN_PREFIX, ""));
-            String comerciante = jwt.getSubject();
-           // String role = jwt.getClaims().get("roles").asList(String.class).get(0);
-           // request.setAttribute("role", role);
+            String email = jwt.getSubject();
+            Comerciante comerciante = comercianteService.findByEmail(email);
+            request.setAttribute("comerciante", comerciante);
 
             if (comerciante != null) {
                 return new UsernamePasswordAuthenticationToken(comerciante, null, new ArrayList<>());

@@ -58,6 +58,15 @@ public class ProdutoServiceImpl implements ProdutoService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void updateProduct(Produto product) {
+        try {
+            produtoRepository.save(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public Produto persistProduct(Produto product) {
         Produto persistedProduto = null;

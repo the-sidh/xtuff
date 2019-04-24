@@ -3,13 +3,18 @@ package br.com.equals.xtuff.domain.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
 
 import br.com.equals.xtuff.domain.entities.Comerciante;
 import br.com.equals.xtuff.domain.entities.Loja;
+import br.com.equals.xtuff.domain.entities.Produto;
 import br.com.equals.xtuff.domain.services.ComercianteService;
 import br.com.equals.xtuff.repositories.ComercianteRepository;
 
 @Service
+@Transactional
 public class ComercianteServiceImpl implements ComercianteService {
 
     @Autowired
@@ -40,7 +45,8 @@ public class ComercianteServiceImpl implements ComercianteService {
     }
 
     @Override
-    public Loja getLoja(Comerciante comerciante) {
-        return comerciante.getLoja();
+    public Collection<Produto> getProdutos(String email) {
+        Loja loja = findByEmail(email).getLoja();
+        return loja.getProdutos();
     }
 }

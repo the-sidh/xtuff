@@ -33,5 +33,4 @@ public class LojaServiceImpl implements LojaService {
         return (HashSet<Produto>) lojaRepository.save(loja).getProdutos();
     }
 
-
 }

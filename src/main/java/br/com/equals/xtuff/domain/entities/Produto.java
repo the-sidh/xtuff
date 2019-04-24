@@ -1,5 +1,7 @@
 package br.com.equals.xtuff.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -110,7 +112,7 @@ public class Produto  implements Serializable {
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
-
+    @JsonIgnore
     public Loja getLoja() {
         return loja;
     }

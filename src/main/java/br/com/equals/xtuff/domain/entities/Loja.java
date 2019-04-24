@@ -27,7 +27,7 @@ public class Loja  implements Serializable {
 
     @OneToMany(mappedBy = "loja",cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private Collection<Produto> produtos = new HashSet<>();
+    private Set<Produto> produtos = new HashSet<>();
 
     public Loja(Integer id, String nome, Set<Produto> produtos) {
         this.id = id;
@@ -36,7 +36,7 @@ public class Loja  implements Serializable {
         this.produtos = produtos;
     }
 
-    public Loja(Integer id, String nome, Endereco endereco, Collection<Produto> produtos) {
+    public Loja(Integer id, String nome, Endereco endereco, Set<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -63,11 +63,11 @@ public class Loja  implements Serializable {
         this.nome = nome;
     }
 
-    public Collection<Produto> getProdutos() {
+    public Set<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Collection<Produto> produtos) {
+    public void setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
     }
 
