@@ -17,6 +17,9 @@ public class CadastroServiceImpl implements CadastroService {
     @Autowired
     EnderecoService enderecoService;
 
+    @Autowired
+    LojaService lojaService;
+
 
     @Autowired
     ComercianteService comercianteService;
@@ -25,6 +28,7 @@ public class CadastroServiceImpl implements CadastroService {
     public Loja createLoja(Comerciante comerciante, Loja loja, Endereco endereco){
         Endereco persistedEndereco = enderecoService.addEndereco(endereco);
         loja.setEndereco(persistedEndereco);
+        lojaService.addLoja(loja);
         return comercianteService.addLoja(comerciante, loja);
     }
 }

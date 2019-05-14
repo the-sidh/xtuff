@@ -30,7 +30,8 @@ public class ComercianteServiceImpl implements ComercianteService {
 
     @Override
     public Comerciante findByEmail(String email) {
-        return comercianteRepository.findByEmail(email).get(0);
+        Comerciante comerciante = comercianteRepository.findByEmail(email).size() >0  ? comercianteRepository.findByEmail(email).get(0) : null;
+        return comerciante;
     }
 
     @Override

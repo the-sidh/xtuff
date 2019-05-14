@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
+import br.com.equals.xtuff.domain.entities.Endereco;
 import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.entities.Produto;
 import br.com.equals.xtuff.domain.services.LojaService;
@@ -31,6 +32,12 @@ public class LojaServiceImpl implements LojaService {
         Produto persistedProduto = produtoService.persistProduct(produto);
         loja.getProdutos().add(persistedProduto);
         return (HashSet<Produto>) lojaRepository.save(loja).getProdutos();
+    }
+
+    @Override
+    public Loja addLoja(Loja loja) {
+        Loja persisted = lojaRepository.save(loja);
+        return persisted;
     }
 
 }

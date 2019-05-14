@@ -45,7 +45,7 @@ public class ComercianteController {
 
         securityService.autoLogin(comerciante.getEmail(), comerciante.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/web/welcome";
     }
 
     @GetMapping("/login")

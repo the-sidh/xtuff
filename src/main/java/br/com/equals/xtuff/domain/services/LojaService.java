@@ -11,4 +11,6 @@ public interface LojaService {
 
     public void updateLoja(Loja loja);
     public HashSet<Produto> addProduto(Loja loja, Produto produto);
+
+    Loja addLoja(Loja loja);
 }
