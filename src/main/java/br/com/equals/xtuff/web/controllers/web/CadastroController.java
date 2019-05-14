@@ -2,6 +2,7 @@ package br.com.equals.xtuff.web.controllers.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,13 +35,14 @@ public class CadastroController {
             @RequestParam("complemento") String complemento,
             @RequestParam("cidade") String cidade,
             @RequestParam("estado") String estado,
-            @RequestParam("cep") String cep,
+            @RequestParam("cep") String cep, Model model,
             Principal principal
     ) {
         Endereco endereco = new Endereco(logradouro, bairro, numero, complemento, cidade, estado, cep);
         Loja loja = new Loja(nome);
         Comerciante comerciante = comercianteService.findByEmail(principal.getName());
         cadastroService.createLoja(comerciante, loja, endereco);
+        model.addAttribute("comerciante",comerciante);
         return "welcome";
     }
 }

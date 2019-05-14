@@ -17,9 +17,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${comerciante.loja.produtos == null}">
-            <td colspan="2"> Nenhum produto cadastrado </td>
-        </tr>
+
         <tr th:each="product: ${comerciante.loja.produtos}">
             <td th:text="${product.id}" />
             <td th:text="${product.nome}" />
