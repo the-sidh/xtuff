@@ -6,7 +6,7 @@
 <body>
 
 <div th:replace="fragments/header :: header"/>
-<a href="add-produto.html" th:href="@{/add-produto/}">Adicione um produto</a>
+<a href="add-produto.html" th:href="@{/web/add-produto/}">Adicione um produto</a>
 <div class="container">
     <table>
         <thead>
@@ -23,7 +23,7 @@
             <td th:text="${product.nome}" />
             <td>
                 <div class="btn-group pull-right">
-                    <a class="btn btn-sm btn-primary" th:href="@{/edit-produto/{id}(id=${product.id})}" >Editar</a>
+                    <a class="btn btn-sm btn-primary" th:href="@{/web/edit-produto/{id}(id=${product.id})}" >Editar</a>
                     <!--<a class="delete btn btn-sm btn-danger" th:href="@{/produto-delete/{id}(id=${product.id})}">Excluir</a>-->
                 </div>
             </td>

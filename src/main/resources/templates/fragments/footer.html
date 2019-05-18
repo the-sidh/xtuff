@@ -8,16 +8,24 @@
     <div class="container">
 
         <footer>
-        <!-- this is footer -->
-        &copy; 2019 equals
+            <!-- this is footer -->
+            &copy; 2019 equals
             <span sec:authorize="isAuthenticated()">
                 | Logged user: <span sec:authentication="name"></span> |
                 Roles: <span sec:authentication="principal.authorities"></span> |
-                <a th:href="@{/web/logout}">Sign Out</a>
+                 <form th:action="@{/web/logout}" method="post">
+                            <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sair"/>
+                                     </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        </div>
+                    </div>
+                 </form>
             </span>
 
-        <script type="text/javascript"
-                src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script type="text/javascript"
+                    src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         </footer>
     </div>

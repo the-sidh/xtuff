@@ -1,6 +1,7 @@
 package br.com.equals.xtuff.web.controllers.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 import br.com.equals.xtuff.domain.entities.Comerciante;
+import br.com.equals.xtuff.domain.entities.Loja;
 import br.com.equals.xtuff.domain.entities.Produto;
 import br.com.equals.xtuff.domain.exceptions.EntityNotFoundException;
 import br.com.equals.xtuff.domain.services.ComercianteService;
@@ -49,8 +51,9 @@ public class ProdutoController {
 
     @PostMapping("/edit-produto")
     public String editProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
-        String email = principal.getName();
+        Loja loja = getLojaFromPrincipal(principal);
         Comerciante comerciante = comercianteService.findByEmail(principal.getName());
+        produto.setLoja(loja);
         produtoService.updateProduct(produto);
         model.addAttribute("comerciante", comerciante);
         return "welcome";
@@ -75,5 +78,18 @@ public class ProdutoController {
         model.addAttribute("comerciante", comerciante);
         return "welcome";
     }
+
+    private Loja getLojaFromPrincipal(Principal principal) {
+        Loja loja = null;
+        try {
+            Comerciante comerciante = comercianteService.findByEmail(principal.getName());
+            loja = lojaService.findLoja(comerciante.getLoja().getId());
+
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+        }
+        return loja;
+    }
+
 
 }
