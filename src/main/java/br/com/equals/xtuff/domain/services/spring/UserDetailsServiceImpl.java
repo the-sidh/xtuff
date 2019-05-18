@@ -24,9 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Comerciante comerciante = comercianteDao.findByEmail(userName).get(0);
         if (comerciante == null) throw new UsernameNotFoundException(userName);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-
-
-
         return new org.springframework.security.core.userdetails.User(comerciante.getEmail(), comerciante.getSenha(), grantedAuthorities);
     }
 }

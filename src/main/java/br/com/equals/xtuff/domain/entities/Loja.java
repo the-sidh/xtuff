@@ -27,7 +27,7 @@ public class Loja  implements Serializable {
 
     @OneToMany(mappedBy = "loja",cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private Set<Produto> produtos = new HashSet<>();
+    private Set<Produto> produtos = new HashSet<Produto>();
 
     public Loja(Integer id, String nome, Set<Produto> produtos) {
         this.id = id;

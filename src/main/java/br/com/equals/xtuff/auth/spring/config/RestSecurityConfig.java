@@ -42,7 +42,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and().csrf().disable()
                 .antMatcher("/api/**") //customized entry point
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,  "api/login","api/register")
+                .antMatchers(HttpMethod.POST,  "/api/login/","/api/registration/")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

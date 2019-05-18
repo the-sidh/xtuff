@@ -49,24 +49,15 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public void updateProduct(Produto product, String email) {
-        Comerciante comerciante = comercianteService.findByEmail(email);
-        product.setLoja(comerciante.getLoja());
+    public Produto updateProduct(Produto product) {
         try {
-            produtoRepository.save(product);
+            return produtoRepository.save(product);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    @Override
-    public void updateProduct(Produto product) {
-        try {
-            produtoRepository.save(product);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     @Override
     public Produto persistProduct(Produto product) {
         Produto persistedProduto = null;
@@ -78,12 +69,12 @@ public class ProdutoServiceImpl implements ProdutoService {
         return persistedProduto;
     }
 
-//    @Override
-//    public void AddProductToStore(@ModelAttribute Produto produto, Comerciante comerciante) {
-//        Loja loja = comerciante.getLoja();
-//        produto.setLoja(loja);
-//        Produto persistedProduto = persistProduct(produto);
-//        loja.getProdutos().add(persistedProduto);
-//        comercianteService.updateComerciante(comerciante);
-//    }
+    @Override
+    public Produto addProduto(Loja loja, Produto produto) {
+        produto.setLoja(loja);
+        Produto persistedProduto = persistProduct(produto);
+        loja.getProdutos().add(persistedProduto);
+        lojaService.persistLoja(loja);
+        return persistedProduto;
+    }
 }

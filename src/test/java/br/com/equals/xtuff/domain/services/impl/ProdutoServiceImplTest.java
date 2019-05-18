@@ -68,9 +68,9 @@ public class ProdutoServiceImplTest {
         Produto produto = new Produto(1, "Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null);
         Optional<Produto> opt = Optional.of(produto);
         HashSet<Produto> produtos = new HashSet<Produto>();
-        Mockito.when(lojaService.addProduto(any(Loja.class), any(Produto.class))).thenReturn(produtos);
+        Mockito.when(produtoService.addProduto(any(Loja.class), any(Produto.class))).thenReturn(produto);
 
-        lojaService.addProduto(loja, produto);
+        produtoService.addProduto(loja, produto);
         produtoService.deleteProduct(1);
         verify(produtoRepository, times(1)).deleteById(1);
 
@@ -83,9 +83,9 @@ public class ProdutoServiceImplTest {
         Produto produto = new Produto(1, "Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null);
         Optional<Produto> opt = Optional.of(produto);
         HashSet<Produto> produtos = new HashSet<Produto>();
-        Mockito.when(lojaService.addProduto(any(Loja.class), any(Produto.class))).thenReturn(produtos);
+        Mockito.when(produtoService.addProduto(any(Loja.class), any(Produto.class))).thenReturn(produto);
         Mockito.when(produtoRepository.findById(1)).thenReturn(opt);
-        lojaService.addProduto(loja, produto);
+        produtoService.addProduto(loja, produto);
 
         Produto p = null;
         Produto p2 = null;

@@ -42,7 +42,7 @@ public class ProdutoController {
     public String addProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
         String email = principal.getName();
         Comerciante comerciante = comercianteService.findByEmail(principal.getName());
-        lojaService.addProduto(comerciante.getLoja(), produto);
+        produtoService.addProduto(comerciante.getLoja(), produto);
         model.addAttribute("comerciante", comerciante);
         return "welcome";
     }
@@ -51,7 +51,7 @@ public class ProdutoController {
     public String editProduct(@ModelAttribute Produto produto, BindingResult bindingResult, Principal principal, Model model ) {
         String email = principal.getName();
         Comerciante comerciante = comercianteService.findByEmail(principal.getName());
-        produtoService.updateProduct(produto,email);
+        produtoService.updateProduct(produto);
         model.addAttribute("comerciante", comerciante);
         return "welcome";
     }
