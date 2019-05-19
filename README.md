@@ -45,3 +45,15 @@ Para melhorar, e não apenas repetir a mesma entrega, fizemos duas alterações:
 
 Para acessar nossa aplicação no Heroku, por favor acesse [https://radiant-ravine-66287.herokuapp.com/web/]
 
+Você pode registrar um novo usuário e a seguir criar sua loja, ou já entrar com um usuário que cadastrei previamente:
+
+**email**: sid@equals.com
+
+**senha**: 123
+
+Cumprimos esta atividade, assim como a anterior, apenas pela exigência da entrega. Dento do nosso projeto, esse dashboard não faz sentido. Queremos que 100% do acesso à plataforma venha do nosso app.
+
+Entendemos a importância de conseguirem avaliar os grupos por alguns parâmetro mínimos e também reconhecemos a importância, didaticamente falando, de ensinar Spring, Hibernate e outras tecnologias amplamente usadas no mercado. 
+
+Dito isso, aviso que não gastamos muito tempo arrumando detalhes de front end. Você encontrará uma interface simplista e rústica. É do nosso entendimento que o que está sendo avaliado é o uso do Spring, e esperamos não ser prejudicados por não ter investido nesse aspecto em detrimento do que foi pedido no enunciado.
+
