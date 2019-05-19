@@ -28,33 +28,33 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
 public class LojaServiceImplTest {
-    @InjectMocks
-    LojaServiceImpl lojaService;
-
-    @Mock
-    LojaRepository lojaRepository;
-
-    @Mock
-    ProdutoService produtoService;
-
-    @DisplayName("Deve adicionar um produto na loja")
-    @Test
-    public void DeveAdicionarUmProduto(){
-        Loja loja = new Loja("Loja equals");
-        Produto produto = new Produto(1,"Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null) ;
-        when(produtoService.persistProduct(any(Produto.class))).thenReturn(produto);
-        when(lojaRepository.save(any(Loja.class))).thenReturn(loja);
-       produtoService.addProduto(loja,produto);
-
-    }
-
-    @DisplayName("Deve listar todos os produtos de uma loja")
-    @Test
-    public void DeveListarProdutos(){
-        Loja loja = new Loja("Loja equals");
-        Produto produto = new Produto(1,"Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null) ;
-        when(produtoService.persistProduct(any(Produto.class))).thenReturn(produto);
-        when(lojaRepository.save(any(Loja.class))).thenReturn(loja);
-    }
+//    @InjectMocks
+//    LojaServiceImpl lojaService;
+//
+//    @Mock
+//    LojaRepository lojaRepository;
+//
+//    @Mock
+//    ProdutoService produtoService;
+//
+//    @DisplayName("Deve adicionar um produto na loja")
+//    @Test
+//    public void DeveAdicionarUmProduto(){
+//        Loja loja = new Loja("Loja equals");
+//        Produto produto = new Produto(1,"Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null) ;
+////        when(produtoService.persistProduct(any(Produto.class))).thenReturn(produto);
+////        when(lojaRepository.save(any(Loja.class))).thenReturn(loja);
+//       produtoService.addProduto(loja,produto);
+//
+//    }
+//
+//    @DisplayName("Deve listar todos os produtos de uma loja")
+//    @Test
+//    public void DeveListarProdutos(){
+//        Loja loja = new Loja("Loja equals");
+//        Produto produto = new Produto(1,"Ligth Saber", 1.0d, Calendar.getInstance(), Calendar.getInstance(), 1, null) ;
+//        when(produtoService.persistProduct(any(Produto.class))).thenReturn(produto);
+//        when(lojaRepository.save(any(Loja.class))).thenReturn(loja);
+//    }
 
 }

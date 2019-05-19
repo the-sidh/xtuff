@@ -34,16 +34,16 @@ public class CadastroServiceImplTest {
     @Mock
     ComercianteService comercianteService;
 
-    @Test
-    @DisplayName("Deve cadastrar um comerciante com o devido endereco configurado")
-    public void DeveCadastrarComercianteComEndereco() {
-        Comerciante comerciante = new Comerciante("Luke", "Skywalker", "comerciante@equals.com", "123");
-        Endereco endereco = new Endereco("Rua de terra", "Fazenda do tio Lars e da tia Beru", "s/n", "casinha 1", "Perto de Mos Isley", "Tatooine", "0123445");
-        Loja loja = new Loja("Loja equals");
-        when(comercianteService.addLoja(any(Comerciante.class), any(Loja.class))).thenReturn(loja);
-        when(enderecoService.addEndereco(any(Endereco.class))).thenReturn(endereco);
-        Loja persistedLoja = cadastroService.createLoja(comerciante, loja, endereco);
-        Assertions.assertEquals(persistedLoja.getEndereco().getEstado(),"Tatooine");
-    }
+//    @Test
+//    @DisplayName("Deve cadastrar um comerciante com o devido endereco configurado")
+//    public void DeveCadastrarComercianteComEndereco() {
+//        Comerciante comerciante = new Comerciante("Luke", "Skywalker", "comerciante@equals.com", "123");
+//        Endereco endereco = new Endereco("Rua de terra", "Fazenda do tio Lars e da tia Beru", "s/n", "casinha 1", "Perto de Mos Isley", "Tatooine", "0123445");
+//        Loja loja = new Loja("Loja equals");
+//        when(comercianteService.addLoja(any(Comerciante.class), any(Loja.class))).thenReturn(loja);
+//        when(enderecoService.addEndereco(any(Endereco.class))).thenReturn(endereco);
+//        Loja persistedLoja = cadastroService.createLoja(comerciante, loja, endereco);
+//        Assertions.assertEquals(persistedLoja.getEndereco().getEstado(),"Tatooine");
+//    }
 
 }
