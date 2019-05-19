@@ -112,6 +112,7 @@ No momento temos deployados 7 endpoints:
  #### Roteiro sugerido de testes
  
  Sugerimos o seguinte roteiro de testes:
+ 
  1 - Registration
   Assim você criará sua entidade Comerciante
   
@@ -132,6 +133,8 @@ No momento temos deployados 7 endpoints:
   
   
  **Observações:**
+ 
  1 - A collection já está com alguns valores padrão, que podem não funcionar em produção. Sugerimos editar todos os rquests com informações novas, obedecendo a mesma estrutura
+ 
  2 - O Heroku gratuito é um pouco lento e algumas vezes retorna erro de timeout, então pode ser necessário repetir algum passo eventualmente
 
