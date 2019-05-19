@@ -1,0 +1,186 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Xtuff",
+		"_postman_id": "d71dd435-7119-7e84-d14f-300236052ef4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"url": "{{url}}/registration/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\" : \"Sid\",\n\t\"sobrenome\" : \"Rezende\",\n    \"email\": \"sid@equals.com\",\n    \"senha\": \"123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "List all products",
+			"request": {
+				"url": "http://localhost:8080/api/produtos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaWRAZXF1YWxzLmNvbSIsImV4cCI6MTU1ODIyMTQyMX0.7OXVg4_9atSkIcFtGqDdsdEyK7seznqF0PiSSutTAMqVCijhLdvAsUDh1gux84P0zkirMBVZ8ChvA_OQyXb6uw",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sidharta.rezende@gmail.com\",\n    \"senha\": \"12345678\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"url": "http://localhost:8080/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sid@equals.com\",\n    \"senha\": \"123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add loja",
+			"request": {
+				"url": "{{url}}/add-loja",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaWRAZXF1YWxzLmNvbSIsImV4cCI6MTU1ODIwNjA5OX0.UUn64mKIU048u4TsQBhJ6iL38kuvI9UeNpEfvxIH97aOraoIqgMGwCIes2Jjj-PugkBN52i9nmLcBJgePvrQiw",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"nome\" : \"Loja Teste\",\n \"logradouro\" : \"Avenida Paulista\",\n \"bairro\" : \"Paraiso\",\n \"numero\" :  \"100\",\n \"complemento\": \"\",\n \"cidade\" : \"Sao Paulo\",\n \"estado\": \"SP\",\n \"cep\" : \"11111-11\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add produto",
+			"request": {
+				"url": "{{url}}/add-produto",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaWRAZXF1YWxzLmNvbSIsImV4cCI6MTU1ODIyMTQyMX0.7OXVg4_9atSkIcFtGqDdsdEyK7seznqF0PiSSutTAMqVCijhLdvAsUDh1gux84P0zkirMBVZ8ChvA_OQyXb6uw",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"nome\":\"MacBook\",\n\"preco\":\"9999\",\n\"dataInsercao\":\"2019-05-18\",\n\"dataValidade\":\"2019-05-18\",\n\"quantidade\":1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "edit produto",
+			"request": {
+				"url": "{{url}}/edit-produto",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpQGVxdWFscy5jb20iLCJleHAiOjE1NTgyOTY3MzV9.CJo1OvxZduJtITx_rqtSqI-rLpQM5vT197xBNBxC9InsFE_vqTn3GejhPNL2Eppa0bBOPMbXJkDqjkqK3XQyVw",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5,\n    \"nome\": \"MacBook\",\n    \"preco\": 8000,\n    \"dataInsercao\": \"2019-05-18T00:00:00.000+0000\",\n    \"dataValidade\": \"2019-05-18T00:00:00.000+0000\",\n    \"quantidade\": 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete produto",
+			"request": {
+				"url": "{{url}}/delete-produto/4",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYXJpQGVxdWFscy5jb20iLCJleHAiOjE1NTgyOTY3MzV9.CJo1OvxZduJtITx_rqtSqI-rLpQM5vT197xBNBxC9InsFE_vqTn3GejhPNL2Eppa0bBOPMbXJkDqjkqK3XQyVw",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
