@@ -114,14 +114,20 @@ No momento temos deployados 7 endpoints:
  Sugerimos o seguinte roteiro de testes:
  1 - Registration
   Assim você criará sua entidade Comerciante
+  
  2 - Get Token
   Preenchendo com seu email e senha, você terá no retorno um header com o Token. Deve ser copiado, incluindo a parte que conteem a palavra "Bearer"
+  
 3 - Add loja 
   A partir desse request, todos devem conter o token.
+  
 4 - Add produto
   Repetir este algumas vezes
+  
 5 - List all products
+
 6 - Show product
+
 7 - Delete product
   
   
