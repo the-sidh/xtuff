@@ -74,7 +74,10 @@ No momento temos deployados 7 endpoints:
 - /api/registration/  Utilizado para cadastrar um novo usuário
 - /api/login  Verificar as credenciais e obter token de acesso
 - /api/add-loja  Criar a loja, entidade sob a qual os produtos adicionados
--/api/add-produto Adiciona um produto na loja. Esse endpoint irá sofrer algumas alterações para integração com o app futuramente.
--/api//edit-produto Possibilita a ediçao de um produto
+- /api/add-produto Adiciona um produto na loja. Esse endpoint irá sofrer algumas alterações para integração com o app futuramente.
+- /api//edit-produto Possibilita a ediçao de um produto
+- /api/delete-produto/{id} Deleta um produto
+- /api//produtos Lista todos os produtos do comerciante em questão
+- /api/produto/{id} retorna informações de um determinado produto
 
 
