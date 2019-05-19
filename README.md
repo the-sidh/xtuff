@@ -24,4 +24,24 @@ Nosso projeto não é sobre reservar itens para posterior retirada em lojas fís
 
 Da forma com que enxergamos, o Xtuff é um aplicativo que permite ao pequeno e médio comerciante, dono de uma loja física, facilmente colocar seus produtos a venda em ambientes de comércio eletrônico.
 
-Para nosso MVP, estamos apenas apresentando a solução e subindo os dados de produto no nosso ambiente, onde um consumidor pode reservar o produto e retirar na loja. Mas nossa solução vai muito além disso. Nosso objetivo é integrar com outros MarketPlaces, como Magazine Luiza, Mercado Livre, Rappi, entre outros. O Comerciante poderá, a partir do nosso App, em poucos minutos, com uma facilidade sem igual, colocar seu produto disponível em diversas plataformas de venda.
+Para nosso MVP, estamos apenas apresentando a solução e subindo os dados de produto no nosso ambiente, onde um consumidor pode reservar o produto e retirar na loja. Mas nossa solução vai muito além disso. Nosso objetivo é integrar com outros MarketPlaces, como Magazine Luiza, Mercado Livre, Rappi, entre outros. O Comerciante poderá, a partir do nosso App, em poucos minutos, com uma facilidade sem igual, colocar seu produto disponível em diversas plataformas de vendas.
+
+## Sobre o escopo do MVP
+
+O que propomos a apresentar como MVP são aplicativos iOS e Android que possibilitam que o comerciante tire uma foto do produto, com o preço evidente, revise alguma informação adicional, clique em enviar e pronto! Este produto está disponível online.
+
+Essa facilidade será alcançada integrando OCR com nosso serviço de backend apresentado no presente repositório.
+
+## A Atividade Fase 3 Capítulo 1
+
+Para esta atividade foi pedido que a integração do código presente na atividade anterior com o Spring.
+
+Na nossa entrega anterior já havíamos utilizado Spring Boot, Hibernate, MySQL e Thymeleaf.
+
+Para melhorar, e não apenas repetir a mesma entrega, fizemos duas alterações:
+
+-Uso de repositórios JPA ao invés de DAO 
+-Deploy no Heroku
+
+Para acessar nossa aplicação no Heroku, por favor acesse [https://radiant-ravine-66287.herokuapp.com/web/]
+
