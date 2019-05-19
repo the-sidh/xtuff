@@ -40,8 +40,9 @@ Na nossa entrega anterior já havíamos utilizado Spring Boot, Hibernate, MySQL 
 
 Para melhorar, e não apenas repetir a mesma entrega, fizemos duas alterações:
 
--Uso de repositórios JPA ao invés de DAO 
--Deploy no Heroku
+  - Uso de repositórios JPA ao invés de DAO 
+  
+  - Deploy no Heroku
 
 Para acessar nossa aplicação no Heroku, por favor acesse [https://radiant-ravine-66287.herokuapp.com/web/]
 
