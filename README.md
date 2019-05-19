@@ -32,7 +32,7 @@ O que propomos a apresentar como MVP são aplicativos iOS e Android que possibil
 
 Essa facilidade será alcançada integrando OCR com nosso serviço de backend apresentado no presente repositório.
 
-## A Atividade Fase 3 Capítulo 1
+# A Atividade Fase 3 Capítulo 1
 
 Para esta atividade foi pedido que a integração do código presente na atividade anterior com o Spring.
 
@@ -66,7 +66,7 @@ Tanto a API REST quanto a interface web estão nesse mesmo serviço. Configuramo
 
 
 
-## A Atividade Fase 3 Capítulo 14
+## Atividade Fase 3 Capítulo 14
 
 Implementamos nossa API Rest já bem extensivamente, essa sim de vital importância para nosso MVP.
 No momento temos deployados 7 endpoints:
@@ -80,4 +80,17 @@ No momento temos deployados 7 endpoints:
 - /api//produtos Lista todos os produtos do comerciante em questão
 - /api/produto/{id} retorna informações de um determinado produto
 
+#### Alguns pontos a destacar
+
+ Achamos interessante destacar a capacidade do Spring Framework em prover mais de uma forma de autenticação.
+ 
+ Enquanto nossa interface web utiliza um clássico login via formulário, a API Rest utiliza tokens, validados contra a mesma base de usuários. 
+ 
+ Essa versatilidade é possível graças à possibilidade de implementar múltiplos WebSecurityConfigurerAdapter.
+ 
+ No pacote [https://github.com/the-sidh/xtuff/tree/master/src/main/java/br/com/equals/xtuff/auth/spring/config] estão presente nossos múltiplos adaptadores.
+ 
+ Assim como na atividade anterior, utilizamos amplamente os conceitos de clean coding e clean architecture para obter uma separação clara das diferentes camadas da nossa aplicação, deixando lógica de negócio separada de código de framework sempre que possível. Spring, infelizmente, é um pouco intrusivo nesse aspecto, fazendo uso amplo de anotações que acabam estando presentes em todas as camadas, 
+ 
+ Nosso modelo de entidades faz uma distinção entre loja e endereço, para posteriormente podermos ter suporte a múltiplos endereços de um mesmo estabelimento. Para nosso MVP, entretanto, não fazia sentido criar múltiplos endpoints, pois iremos limitar por enquanto um estabelecimento a apenas um endereço. Para resolver isso, criamos uma entidade agregadora e um serviço que faz o papel de um adapter. Essas classes são, respectivamente [https://github.com/the-sidh/xtuff/blob/master/src/main/java/br/com/equals/xtuff/web/domain/entities/CadastroWrapper.java] e [https://github.com/the-sidh/xtuff/blob/master/src/main/java/br/com/equals/xtuff/domain/services/impl/CadastroServiceImpl.java]
 
