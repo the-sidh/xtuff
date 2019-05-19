@@ -60,7 +60,7 @@
 		{
 			"name": "Get Token",
 			"request": {
-				"url": "http://localhost:8080/api/login",
+				"url": "{{url}}/login",
 				"method": "POST",
 				"header": [
 					{
