@@ -101,6 +101,22 @@ public class ProdutoRestController {
         }
     }
 
+    @GetMapping("/show-produto/{id}")
+    public ResponseEntity<Produto> show(@PathVariable("id") Integer id, Principal principal) {
+        Loja loja = getLojaFromPrincipal(principal);
+        if(loja==null)
+            return new ResponseEntity<Produto>(HttpStatus.NO_CONTENT);
+        try {
+            Produto produto = produtoService.showProduct(id);
+            if (produto.getLoja() != loja) {
+                return new ResponseEntity<Produto>(HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+            }
+            return new ResponseEntity<Produto>(produto,HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<Produto>(HttpStatus.NO_CONTENT);
+        }
+    }
+
     private Loja getLojaFromPrincipal(Principal principal) {
         Loja loja = null;
         try {

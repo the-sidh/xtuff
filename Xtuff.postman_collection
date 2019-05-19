@@ -181,6 +181,31 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Show product",
+			"request": {
+				"url": "{{url}}/show-produto/10",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaWRAZXF1YWxzLmNvbSIsImV4cCI6MTU1ODMwNDg2MH0.dA19tN4JHo1e6ZIAnN8_LhUVBsGGASpw1JxI2kHqkuMJTOag-MxOWI-Rh3y1TRKYQEeySDFF7wdtXP11CMDWbQ",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sidharta.rezende@gmail.com\",\n    \"senha\": \"12345678\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
