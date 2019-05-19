@@ -101,12 +101,31 @@ No momento temos deployados 7 endpoints:
  
  Nossa collection faz uso de múltiplos ambientes, pois também usamos ela para nossos testes em ambiente locais.
  
- Será preciso criar um ambiente, com o nome a sua escolha, com as seguintes informações:
+ Disponibilizamos o arquivo com o ambiente de produçao em:
+ [https://github.com/the-sidh/xtuff/blob/master/xtuff%20-%20heroku.postman_environment]
+ 
+ Caso prefira, pode criar em seu postman sem importar o arquivo de ambientes. Basta ter com as seguintes informações:
  - key: URL
  - value: https://radiant-ravine-66287.herokuapp.com/api
  
  
  #### Roteiro sugerido de testes
  
- Sugerimos o 
+ Sugerimos o seguinte roteiro de testes:
+ 1 - Registration
+  Assim você criará sua entidade Comerciante
+ 2 - Get Token
+  Preenchendo com seu email e senha, você terá no retorno um header com o Token. Deve ser copiado, incluindo a parte que conteem a palavra "Bearer"
+3 - Add loja 
+  A partir desse request, todos devem conter o token.
+4 - Add produto
+  Repetir este algumas vezes
+5 - List all products
+6 - Show product
+7 - Delete product
+  
+  
+ **Observações:**
+ 1 - A collection já está com alguns valores padrão, que podem não funcionar em produção. Sugerimos editar todos os rquests com informações novas, obedecendo a mesma estrutura
+ 2 - O Heroku gratuito é um pouco lento e algumas vezes retorna erro de timeout, então pode ser necessário repetir algum passo eventualmente
 
