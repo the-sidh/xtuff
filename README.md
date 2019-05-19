@@ -58,3 +58,23 @@ Entendemos a importância de conseguirem avaliar os grupos por alguns parâmetro
 
 Dito isso, aviso que não gastamos muito tempo arrumando detalhes de front end. Você encontrará uma interface simplista e rústica. É do nosso entendimento que o que está sendo avaliado é o uso do Spring, e esperamos não ser prejudicados por não ter investido nesse aspecto em detrimento do que foi pedido no enunciado.
 
+Tanto a API REST quanto a interface web estão nesse mesmo serviço. Configuramos o Spring de forma a possibilitar as duas formas de autentição. Explicaremos isso mais adiante, mas destaco o seguinte pacote, bem relevante para a avaliação dessa atividade:
+
+[https://github.com/the-sidh/xtuff/tree/master/src/main/java/br/com/equals/xtuff/web/controllers/web]
+
+É nele que se encontram os Controllers da interface Web e acreditamos ser o ponto ideal para iniciar o entendimento dessa camada.
+
+
+
+## A Atividade Fase 3 Capítulo 14
+
+Implementamos nossa API Rest já bem extensivamente, essa sim de vital importância para nosso MVP.
+No momento temos deployados 7 endpoints:
+
+- /api/registration/  Utilizado para cadastrar um novo usuário
+- /api/login  Verificar as credenciais e obter token de acesso
+- /api/add-loja  Criar a loja, entidade sob a qual os produtos adicionados
+-/api/add-produto Adiciona um produto na loja. Esse endpoint irá sofrer algumas alterações para integração com o app futuramente.
+-/api//edit-produto Possibilita a ediçao de um produto
+
+
