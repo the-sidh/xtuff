@@ -32,11 +32,5 @@ public class ComercianteRestController {
         comercianteService.save(comerciante);
     }
 
-    @GetMapping("/produtos")
-    public ResponseEntity<Set<Produto>> listProdutos(HttpServletRequest request) {
-        Comerciante comerciante = (Comerciante) request.getAttribute("comerciante");
-        Set<Produto> produtos = (Set<Produto>) comercianteService.getProdutos(comerciante.getEmail());
-        return new ResponseEntity<Set<Produto>>(produtos, HttpStatus.OK);
-    }
 }
 
